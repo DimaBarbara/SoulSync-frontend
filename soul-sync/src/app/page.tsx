@@ -1,11 +1,13 @@
-import React from 'react'
-import LoginForm from './components/LoginForm'
+import LoginForm from "./components/LoginForm";
 
 export default function Home() {
   return (
-    <main>
-        <h1 className='text-xl'>Home Page</h1>
-        <LoginForm/>
-    </main>
+    <div >
+      <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    <LoginForm/>
+    </div>
+    
   )
 }

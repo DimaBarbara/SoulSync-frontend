@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import $api from "../api";
 import { IUser } from "../models/IUser";
+import $api from "../utils/api";
 
 export default class UserService {
     static async fetchUsers(): Promise<AxiosResponse<IUser>> {
