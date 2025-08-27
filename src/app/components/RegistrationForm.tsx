@@ -9,25 +9,20 @@ interface Values {
     email: string;
     password: string;
 }
-const LoginForm: FC = () => {
+const RegistrationForm: FC = () => {
      const handleSubmit = async (values: Values, { setSubmitting }: FormikHelpers<Values>) => {
-        await store.login(values.email, values.password)
-        if(store.isAuth) {
-           store.setLoginModalOpen(false)
-           console.log("isAuth",store.isAuth)
-        }
+        store.registration(values.email, values.password)
           setSubmitting(false);
     }
     const {store} = useContext(Context)
-
-    const handleLoginClick = (event : React.MouseEvent) => {
-      event.preventDefault();
-      store.setRegistrationModalOpen(true)
-      store.setLoginModalOpen(false)
-    }
+    
+    const handleLoginClick = (event: React.MouseEvent) => {
+    event.preventDefault(); 
+    store.setRegistrationModalOpen(false);
+    store.setLoginModalOpen(true);
+  };
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>
     <Formik
     initialValues={{
         email: '',
@@ -46,16 +41,16 @@ const LoginForm: FC = () => {
           </div >
             <button type="submit" className='border border-black bg-blue-100 p-2 rounded-lg w-40 hover:bg-blue-200 transition-colors duration-300 ease-in-out input-bounce'>Submit</button>
             <a href='#'
-               onClick={handleLoginClick}
+               onClick={handleLoginClick} 
                className='hover:underline focus:underline transition-all duration-300 ease-in-out'
-               >
-                Not registered? Sign up now!
-                </a>
+             >
+                Already registered? Log in
+            </a>
         </Form>
+
     </Formik>
-  </div>
   )
 }
 
-export default observer(LoginForm) 
+export default observer(RegistrationForm) 
 

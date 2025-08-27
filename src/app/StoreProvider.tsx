@@ -1,10 +1,12 @@
 'use client'
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext } from 'react';
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Store from '@/lib/store/store';
+import { observer } from 'mobx-react-lite';
+import RegistrationForm from './components/RegistrationForm';
 
 interface State {
   store: Store;
@@ -16,11 +18,9 @@ export const Context = createContext<State>({
   store,
 })
 
-export default function StoreProvider({ children }: {
+const StoreProvider = observer(({ children }: {
   children: React.ReactNode;
-}) {
-  const {store} = useContext(Context);
-
+}) => {
   return (
     <Context.Provider value = {{
         store
@@ -28,7 +28,10 @@ export default function StoreProvider({ children }: {
       <Header />
       {children}
       <Footer />
-      {store.isAuth ? '' : <LoginForm />}
+      {store.loginModalOpen ? <LoginForm /> : ''}
+      {store.registrationModalOpen ? <RegistrationForm /> : ''}
     </Context.Provider>
   );
-}
+});
+
+export default StoreProvider;

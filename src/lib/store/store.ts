@@ -11,6 +11,8 @@ export default class Store {
     user = {} as IUser;
     isAuth = false;
     mood = {} as MoodResponse;
+    loginModalOpen = false;
+    registrationModalOpen = false;
 
 
     constructor() {
@@ -27,6 +29,12 @@ export default class Store {
     setMood(mood: MoodResponse) {
         this.mood = mood
     }
+    setLoginModalOpen(bool: boolean) {
+    this.loginModalOpen = bool;
+    }
+    setRegistrationModalOpen(bool: boolean) {
+        this.registrationModalOpen = bool;
+    }
 
     async login(email: string, password:string) {
         try {
@@ -35,6 +43,7 @@ export default class Store {
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true)
             this.setUser(response.data.user)
+            console.log(this.isAuth)
         } catch (error: unknown) {
              if (axios.isAxiosError(error) && error.response) {
             console.log(error.response.data?.message);
@@ -93,14 +102,14 @@ export default class Store {
 
     async checkAuth() {
         try {
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response)
+            const response = await AuthService.refresh()
+            console.log("frfrfr",response)
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error: unknown) {
              if (axios.isAxiosError(error) && error.response) {
-            console.log(error.response.data?.message);
+            console.log("D",error.response.data.data?.message);
         } else {
             console.log('Unexpected error', error);
         }
