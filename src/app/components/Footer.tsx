@@ -3,8 +3,8 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <footer className='bg-neutral-100 p-4 rounded-3xl mt-8 shadow-md'>
-      <div className='max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4'>
+    <footer className="bg-neutral-100 rounded-3xl mt-8 shadow-md fixed bottom-5 left-1/2 -translate-x-1/2 w-[98%] p-4">
+      <div className=' mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4 py-2'>
         <div className='text-gray-700 font-semibold'>
           © 2025 Soul Sync
         </div>
@@ -19,8 +19,6 @@ const Footer = () => {
             <FaEnvelope size={24} className='hover:text-red-500 transition-colors'/>
           </a>
         </div>
-
-
         <div className='text-gray-500 text-sm'>
           Made with love ❤️
         </div>

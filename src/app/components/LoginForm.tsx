@@ -25,6 +25,9 @@ const LoginForm: FC = () => {
       store.setRegistrationModalOpen(true)
       store.setLoginModalOpen(false)
     }
+    const handleCloseClick = () => {
+      store.setLoginModalOpen(false)
+    }
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>
@@ -34,17 +37,26 @@ const LoginForm: FC = () => {
         password: '',
     }}
     onSubmit={handleSubmit}>
-        <Form className='flex flex-col items-center justify-center gap-5 m-auto w-96 bg-gradient-to-r bg-animated-gradient p-6 rounded-lg border border-indigo-300'>
+        <Form className=' relative flex flex-col items-center justify-center gap-5 m-auto w-100  bg-neutral-100 p-6 rounded-lg shadow-md'>
+           <button
+                type="button"
+                onClick={handleCloseClick}
+                className="absolute top-2 right-2 p-1 text-gray-600 hover:text-gray-900 transition-colors duration-200"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
             <h2 className='font-bold'>Let’s make the world better 🌍✨</h2>
           <div className='flex flex-col'> 
             <label htmlFor='email'>Email</label>
-            <Field id='email' name='email' placeholder='email' type="email" className="bg-blue-100 rounded-lg p-2 border border-black transition-colors duration-300 ease-in-out hover:bg-blue-200 input-bounce"/>
+            <Field id='email' name='email' placeholder='email' type="email" className="p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200"/>
           </div>
           <div className='flex flex-col'>
             <label htmlFor='password'>Password</label>
-            <Field id='password' name='password' placeholder='password' type="password" className="bg-blue-100 rounded-lg p-2 border border-black transition-colors duration-300 ease-in-out hover:bg-blue-200 input-bounce"/>
+            <Field id='password' name='password' placeholder='password' type="password" className="p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200"/>
           </div >
-            <button type="submit" className='border border-black bg-blue-100 p-2 rounded-lg w-40 hover:bg-blue-200 transition-colors duration-300 ease-in-out input-bounce'>Submit</button>
+            <button type="submit" className='flex-shrink-0 ml-2 px-6 py-3 rounded-4xl w-30 items-center justify-center font-bold bg-amber-200 hover:bg-amber-300 focus:bg-amber-300 transition-colors duration-300 ease-in-out'>Submit</button>
             <a href='#'
                onClick={handleLoginClick}
                className='hover:underline focus:underline transition-all duration-300 ease-in-out'

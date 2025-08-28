@@ -14,15 +14,22 @@ interface Emotion {
 
 const EmotionBars = observer(() => {
   const { store } = useContext(Context);
-  const { mood } = store;
+  const { mood, isLoading } = store;
 
-  if (!mood.text) {
+   if (isLoading) {
     return (
-      <section className="bg-neutral-100 p-6 rounded-3xl shadow-md text-center">
-        <p>Data for analysis has not yet been loaded.</p>
-      </section>
+        <div className="loader"></div>
+      
     );
   }
+  
+  if (!mood.text) {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
+      <p className="pointer-events-auto">Data for analysis has not yet been loaded.</p>
+    </div>
+  );
+}
   const emotionIcons: Record<Emotion["label"], JSX.Element> = {
     joy: <FaSmile className="text-yellow-500 mr-2" />,
     sadness: <FaFrown className="text-blue-500 mr-2" />,

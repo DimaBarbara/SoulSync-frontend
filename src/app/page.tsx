@@ -1,22 +1,40 @@
 'use client'
-import { useContext, useEffect } from "react";
-import FactsAboutAI from "./components/FactsAboutAi";
-import GreetingsImage from "./components/GreetingImage";
-import Greetings from "./components/Greetings";
-import { Context } from "./StoreProvider";
-import { observer } from "mobx-react-lite"; 
 
+import { useContext, useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Context } from './StoreProvider';
+import Greetings from './components/Greetings';
+import GreetingsImage from './components/GreetingImage';
+import FactsAboutAI from './components/FactsAboutAi';
+import { observer } from 'mobx-react-lite';
+import { useCheckAuth } from '@/lib/hooks/useCheckAuth';
 
 function Home() {
-    const { store } = useContext(Context);
+  useCheckAuth()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { store } = useContext(Context)
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            store.checkAuth();
-        }
-    }, []);
+  const [isClient, setIsClient] = useState(false);
 
-    return (
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return; 
+
+    const showLoginParam = searchParams.get('showLogin');
+    if (showLoginParam === 'true') {
+      store.setLoginModalOpen(true);
+
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete('showLogin');
+      router.replace(`/?${newSearchParams.toString()}`);
+    }
+  }, [searchParams, router, store, isClient]);
+
+  return (
         <div>
             <div className="flex gap-6 ">
                 <div className="flex-2">

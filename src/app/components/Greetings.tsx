@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Greetings = () => {
@@ -17,9 +18,11 @@ const Greetings = () => {
           This project is built for practice and experimenting with React, Tailwind,
           and Next.js.
         </p>
-        <button className='bg-blue-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition'>
-          Start Exploring
-        </button>
+        <Link href='/dashboard'>
+          <button className='bg-blue-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition'>
+            Start Exploring
+          </button>
+        </Link>
       </div>
     </section>
   )

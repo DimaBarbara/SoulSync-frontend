@@ -16,13 +16,16 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MoodChart = () => {
   const { store } = useContext(Context);
-  const { mood } = store;
+  const { mood, isLoading } = store;
 
   if (!mood.text) {
     return (
-      <section className="bg-neutral-100 p-6 rounded-3xl shadow-md text-center">
-        <p>The mood has not been analyzed yet. Start by typing.</p>
-      </section>
+     ''
+    )
+  }
+  if (isLoading) {
+    return (
+     ''
     );
   }
 
