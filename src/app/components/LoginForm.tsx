@@ -37,7 +37,7 @@ const LoginForm: FC = () => {
         password: '',
     }}
     onSubmit={handleSubmit}>
-        <Form className=' relative flex flex-col items-center justify-center gap-5 m-auto w-100  bg-neutral-100 p-6 rounded-lg shadow-md'>
+        <Form className=' relative flex flex-col items-center justify-center gap-5 m-auto w-80  bg-neutral-100 p-6 rounded-lg shadow-md sm:w-100'>
            <button
                 type="button"
                 onClick={handleCloseClick}

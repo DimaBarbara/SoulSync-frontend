@@ -13,17 +13,16 @@ const Header = () => {
      console.log("Header renders. store.isAuth is:", store.isAuth);
   return (
     <header className=''>
-      <div className='flex bg-neutral-100 p-2 justify-between items-center rounded-4xl shadow-md'>
-        <div className='flex bg-amber-200 p-3 rounded-4xl w-60 items-center justify-center' >
-          <div className=' text-xl font-extrabold tracking-tight'>
-          <Image 
-              src="/images/logo.png" 
-              alt="logo" 
-              width={150} 
-              height={50} 
-              priority
-            />
-          </div>
+      <div className='flex bg-neutral-100 p-2 justify-between items-center rounded-4xl shadow-md sm: flex-col gap-5 xl:flex-row'>
+        <div className='flex bg-amber-200 p-3 rounded-4xl w-60 h-12 items-center justify-center overflow-hidden' >
+            <Image 
+                src="/images/logo.png" 
+                alt="logo" 
+                width={180} 
+                height={100} 
+                priority
+                className="object-cover " 
+              />
         </div>
         <div className='flex '>
           {store.isAuth 

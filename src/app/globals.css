@@ -8,10 +8,33 @@ body {
   font-family: sans-serif; 
   padding: 20px; 
   min-height: 100vh;
-  background: linear-gradient(to bottom, #e0e0e0, #f5e6c4); 
+  background: linear-gradient(to bottom, #e0e0e0, #f5e6c4);
+  /* Base font size for large screens */
+  font-size: 16px;
 }
 
- .loader {
+/* Media query for tablets and smaller screens (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Decreases font size */
+  }
+}
+
+/* Media query for small phones (max-width: 400px) */
+@media (max-width: 400px) {
+  body {
+    font-size: 12px; /* Decreases font size further */
+  }
+}
+
+/* Media query for very small devices (max-width: 320px) */
+@media (max-width: 320px) {
+  body {
+    font-size: 10px; /* Smallest font size for clarity */
+  }
+}
+
+.loader {
   position: fixed;
   top: 50%;
   left: 50%;

@@ -26,17 +26,17 @@ const FactsAboutAI = () => {
   ];
 
   return (
-    <section className="bg-neutral-100 p-6 rounded-3xl mt-8 shadow-md text-center h-80 md:h-auto">
+    <section className="bg-neutral-100 p-6 rounded-3xl mt-8 shadow-md text-center mb-40 sm:mb-25 xl:mb-0">
       <h2 className="text-2xl font-bold mb-6">Cool Things AI Can Do</h2>
-      <div className="flex flex-col md:flex-row gap-6 justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
         {facts.map((fact, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition flex-1 flex flex-col items-center"
+            className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition-shadow duration-300 flex flex-col items-center"
           >
             {fact.icon}
             <h3 className="font-semibold text-lg mb-2">{fact.title}</h3>
-            <p className="text-gray-600">{fact.description}</p>
+            <p className="text-gray-600 text-sm">{fact.description}</p>
           </div>
         ))}
       </div>

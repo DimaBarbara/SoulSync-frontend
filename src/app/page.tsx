@@ -36,7 +36,7 @@ function Home() {
 
   return (
         <div>
-            <div className="flex gap-6 ">
+            <div className="flex gap-6 sm: flex-col xl:flex-row ">
                 <div className="flex-2">
                     <Greetings />
                 </div>

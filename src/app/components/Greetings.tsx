@@ -5,7 +5,7 @@ const Greetings = () => {
   return (
     <section
       id='Greetings'
-      className='bg-neutral-100 rounded-3xl mt-8 shadow-md flex flex-col items-center text-center h-80'
+      className='bg-neutral-100 rounded-3xl mt-8 shadow-md flex flex-col items-center text-center h-95 sm:h-70 xl:h-80 text-xl'
     >
       <div className='p-6 h-full flex flex-col items-center text-center'>
         <h1 className='text-3xl font-extrabold mb-4'>Hello! 👋</h1>
@@ -14,7 +14,7 @@ const Greetings = () => {
           can get inspired, discover interesting projects, and share your own work
           with the world.
         </p>
-        <p className='text-sm text-gray-500 mb-6'>
+        <p className='text-sm text-gray-500 mb-6 sm:text-xs xl:text-sm'>
           This project is built for practice and experimenting with React, Tailwind,
           and Next.js.
         </p>

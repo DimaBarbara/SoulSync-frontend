@@ -1,87 +1,70 @@
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+'use client';
 
-const App = () => {
-    const [moodText, setMoodText] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+import React, { useState, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
+import { Context } from '@/app/StoreProvider';
 
-    // A simple regex to check for non-English characters.
-    const isEnglish = (text: string): boolean => /^[A-Za-z0-9\s.,!?'"#$%&()*+-\/|:;<=>@\[\]^_`{|}~]*$/.test(text);
+const MoodInput = () => {
+  const { store } = useContext(Context);
+  const [moodText, setMoodText] = useState('');
+  const [isValidMood, setIsValidMood] = useState(false);
 
-    const handleSendMood = async () => {
-        // --- Validation Logic ---
-        if (moodText.trim().length < 5) {
-            toast.error('Please enter at least 5 characters.');
-            return;
-        }
+   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setMoodText(value);
+    const regex = /^[A-Za-z]/;
+    setIsValidMood(regex.test(value));
+  };
 
-        if (!isEnglish(moodText)) {
-            toast.error('Only English is supported for this request.');
-            return;
-        }
+  const handleSendMood = async () => {
+    if (!isValidMood || store.isLoading) {
+      return;
+    }
 
-        setIsLoading(true); 
-        
-        try {
-            // Simulating an API call with a delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            setMoodText(''); 
-            toast.success('Your mood has been sent!');
-        } catch (error) {
-            console.error('Error sending mood:', error);
-            toast.error('Failed to send mood. Please try again.');
-        } finally {
-            setIsLoading(false); 
-        }
-    };
+    store.setIsLoading(true);
 
-    return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4 font-sans">
-            <style>
-                {`
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-                    @import url('https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.1/ReactToastify.min.css');
-                    body {
-                        font-family: 'Inter', sans-serif;
-                    }
-                `}
-            </style>
-            <div className='flex flex-col w-full max-w-lg bg-white rounded-xl shadow-lg p-6 space-y-4'>
-                <h1 className="text-2xl font-bold text-center text-gray-800">How are you feeling today?</h1>
-                <div className='flex bg-neutral-100 p-2 items-center rounded-4xl shadow-md'>
-                    <input
-                        type='text'
-                        value={moodText}
-                        onChange={(e) => setMoodText(e.target.value)}
-                        placeholder='Describe your mood...'
-                        className='flex-1 p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200'
-                    />
-                    <button
-                        onClick={handleSendMood}
-                        disabled={isLoading}
-                        className={`flex-shrink-0 ml-2 px-6 py-3 rounded-4xl w-30 items-center justify-center font-bold text-white
-                            ${isLoading ? 'bg-amber-300 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-600 focus:bg-amber-600 transition-colors duration-300 ease-in-out'}`}
-                    >
-                        {isLoading ? 'Sending...' : 'Send'}
-                    </button>
-                </div>
-            </div>
-            {/* The ToastContainer is where the notifications will be displayed */}
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-        </div>
-    );
+    try {
+      await store.sendMood(moodText);
+      setMoodText('');
+      setIsValidMood(false); 
+    } catch (error) {
+      console.error('Error sending mood:', error);
+    } finally {
+      store.setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-2 bg-neutral-100 p-2 sm:p-4 rounded-3xl sm:rounded-4xl shadow-md">
+      <div className="flex items-center w-full">
+        <input
+          type="text"
+          value={moodText}
+          onChange={handleInputChange}
+          placeholder="Describe your mood (min 10 English letters)..."
+          className={`flex-1 p-3 rounded-3xl sm:rounded-4xl bg-white focus:outline-none focus:ring-2 transition-colors duration-300 ease-in-out ${
+            isValidMood ? 'focus:ring-green-500 border-green-500' : 'focus:ring-red-500 border-red-500'
+          }`}
+        />
+        <button
+          onClick={handleSendMood}
+          disabled={!isValidMood || store.isLoading}
+          className={`flex-shrink-0 ml-2 px-6 py-3 rounded-3xl sm:rounded-4xl items-center justify-center font-bold text-sm sm:text-base transition-colors duration-300 ease-in-out
+            ${!isValidMood || store.isLoading
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-amber-200 hover:bg-amber-300 focus:bg-amber-300'
+            }`}
+        >
+          {store.isLoading ? '...' : 'Send'}
+        </button>
+      </div>
+      {!isValidMood && moodText.length > 0 && (
+        <p className="text-red-500 text-xs px-2 sm:px-3">
+          Error: Please use only English letters, and your text must be at least 10 characters long.
+        </p>
+      )}
+    </div>
+  );
 };
 
-export default App;
+export default observer(MoodInput);
