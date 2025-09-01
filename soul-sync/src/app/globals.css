@@ -1,48 +1,62 @@
 @import "tailwindcss";
 
-@keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif; 
+  padding: 20px; 
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e0e0e0, #f5e6c4);
+  /* Base font size for large screens */
+  font-size: 16px;
+}
+
+/* Media query for tablets and smaller screens (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Decreases font size */
   }
 }
 
-.bg-animated-gradient {
-  background: linear-gradient(270deg, #4f46e5, #8b5cf6, #ec4899, #f97316);
-  background-size: 600% 600%;
-  animation: gradient-flow 8s ease infinite;
-}
-.input-bounce {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  outline: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Media query for small phones (max-width: 400px) */
+@media (max-width: 400px) {
+  body {
+    font-size: 12px; /* Decreases font size further */
+  }
 }
 
-.input-bounce:hover {
-  animation: input-bounce 0.4s ease forwards;
+/* Media query for very small devices (max-width: 320px) */
+@media (max-width: 320px) {
+  body {
+    font-size: 10px; /* Smallest font size for clarity */
+  }
 }
 
-@keyframes input-bounce {
-  0% {
-    transform: translateX(0);
-    box-shadow: none;
-  }
-  25% {
-    transform: translateX(2px); 
-    box-shadow: 2px 0 5px black;
-  }
-  50% {
-    transform: translateX(-2px);
-    box-shadow: -2px 0 5px black;
-  }
-  100% {
-    transform: translateX(0);
-    box-shadow: none;
-  }
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  --r1: 154%;
+  --r2: 68.5%;
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(var(--r1) var(--r2) at top    ,#0000 79.5%,#269af2 80%),
+    radial-gradient(var(--r1) var(--r2) at bottom,#269af2 79.5%,#0000 80%),
+    radial-gradient(var(--r1) var(--r2) at top    ,#0000 79.5%,#269af2 80%),
+    #ccc;
+  background-size: 50.5% 220%;
+  background-position: -100% 0%,0% 0%,100% 0%;
+  background-repeat:no-repeat;
+  animation: l9 2s infinite linear;
+}
+@keyframes l9 {
+    33%  {background-position:    0% 33% ,100% 33% ,200% 33% }
+    66%  {background-position: -100%  66%,0%    66% ,100% 66% }
+    100% {background-position:    0% 100%,100% 100%,200% 100%}
 }
