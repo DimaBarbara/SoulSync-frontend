@@ -12,7 +12,7 @@ const Footer = () => {
           <a href='https://github.com/dimabarbara' target='_blank' rel='noopener noreferrer'>
             <FaGithub size={24} className='hover:text-black transition-colors'/>
           </a>
-          <a href='https://linkedin.com/in/yourusername' target='_blank' rel='noopener noreferrer'>
+          <a href='https://www.linkedin.com/in/dmytro-barbara/' target='_blank' rel='noopener noreferrer'>
             <FaLinkedin size={24} className='hover:text-blue-600 transition-colors'/>
           </a>
           <a href='mailto:dmytrobarbara1@email.com'>
