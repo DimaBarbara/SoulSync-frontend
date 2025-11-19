@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e0e0e0, #f5e6c4);
+  /* Base font size for large screens */
+  font-size: 16px;
+}
+
+/* Media query for tablets and smaller screens (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Decreases font size */
+  }
+}
+
+/* Media query for small phones (max-width: 400px) */
+@media (max-width: 400px) {
+  body {
+    font-size: 12px; /* Decreases font size further */
+  }
+}
+
+/* Media query for very small devices (max-width: 320px) */
+@media (max-width: 320px) {
+  body {
+    font-size: 10px; /* Smallest font size for clarity */
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  --r1: 154%;
+  --r2: 68.5%;
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(var(--r1) var(--r2) at top, #0000 79.5%, #269af2 80%),
+    radial-gradient(var(--r1) var(--r2) at bottom, #269af2 79.5%, #0000 80%),
+    radial-gradient(var(--r1) var(--r2) at top, #0000 79.5%, #269af2 80%), #ccc;
+  background-size: 50.5% 220%;
+  background-position:
+    -100% 0%,
+    0% 0%,
+    100% 0%;
+  background-repeat: no-repeat;
+  animation: l9 2s infinite linear;
+}
+@keyframes l9 {
+  33% {
+    background-position:
+      0% 33%,
+      100% 33%,
+      200% 33%;
+  }
+  66% {
+    background-position:
+      -100% 66%,
+      0% 66%,
+      100% 66%;
+  }
+  100% {
+    background-position:
+      0% 100%,
+      100% 100%,
+      200% 100%;
+  }
+}
