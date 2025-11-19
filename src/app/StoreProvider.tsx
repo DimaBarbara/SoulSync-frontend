@@ -1,6 +1,6 @@
 "use client";
 
-import "react-toastify/dist/ReactToasty.css";
+import "react-toastify/dist/ReactToastify.css";
 import React, { createContext, useEffect } from "react";
 import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
