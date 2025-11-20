@@ -4,9 +4,16 @@ import React, { useContext } from "react";
 import { Context } from "../StoreProvider";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const { store } = useContext(Context);
+  const router = useRouter()
+const handleLogout = () => {
+  router.push("/")
+  store.logout()
+}
+
   return (
    <header className="motion-preset-slide-down motion-duration-1000">
       <div className="flex bg-neutral-100 p-2 justify-between items-center rounded-4xl shadow-md sm: flex-col gap-5 xl:flex-row">
@@ -48,7 +55,7 @@ const Header = () => {
         <div className="flex gap-2">
           {store.isAuth ? (
             <button
-              onClick={() => store.logout()}
+              onClick={handleLogout}
               className="flex bg-lime-200 p-3 rounded-4xl w-60 items-center justify-center hover:bg-lime-300 focus:bg-lime-300 transition-colors duration-300 ease-in-out"
             >
               Log Out

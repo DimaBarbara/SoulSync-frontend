@@ -17,7 +17,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex flex-col mb-30 xl:mb-0">
       {children}
-      <main className="grid grid-cols-12 gap-5 py-10 pl-10 pr-7">
+      <main className="grid grid-cols-12 gap-5 py-10 sm:pl-10 sm:pr-7">
         <div className="col-span-12">{inputBar}</div>
         <div className="col-span-12 md:col-span-5 flex flex-col gap-5">
           {emotionBar}

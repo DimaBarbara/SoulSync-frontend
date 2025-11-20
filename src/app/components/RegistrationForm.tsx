@@ -4,6 +4,7 @@ import React, { FC, useContext, useState, useEffect } from "react";
 import { Context } from "../StoreProvider";
 import { observer } from "mobx-react-lite";
 import Confetti from "react-confetti";
+import { useRouter } from "next/navigation";
 
 interface Values {
   email: string;
@@ -12,7 +13,7 @@ interface Values {
 
 const RegisterForm: FC = () => {
   const { store } = useContext(Context);
-  
+  const router = useRouter()
   const [showConfetti, setShowConfetti] = useState(false);
   const [windowDimension, setWindowDimension] = useState({
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
@@ -42,6 +43,7 @@ const RegisterForm: FC = () => {
         store.setRegistrationModalOpen(false);
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 3000);
+        router.push("/dashboard")
       }
     } catch (e) {
       console.error("Registration failed:", e);

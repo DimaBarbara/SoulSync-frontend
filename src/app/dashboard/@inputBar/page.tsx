@@ -58,7 +58,7 @@ const MoodInput = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 bg-neutral-100 p-2 sm:p-4 rounded-3xl sm:rounded-4xl shadow-md">
+      <div className="flex flex-col gap-2 bg-neutral-100 p-2 sm:p-4 rounded-3xl sm:rounded-4xl shadow-md w-full">
         <div className="flex items-center w-full">
           <input
             type="text"

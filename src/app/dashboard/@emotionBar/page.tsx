@@ -30,7 +30,7 @@ const EmotionBars = observer(() => {
 
   if (!mood.text) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <p className="pointer-events-auto">
           Data for analysis has not yet been loaded.
         </p>

@@ -1,9 +1,11 @@
 "use client";
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import React, { FC, useContext, useState, useEffect } from "react"; // Импортируем useState и useEffect
+import React, { FC, useContext, useState, useEffect } from "react"; 
 import { Context } from "../StoreProvider";
 import { observer } from "mobx-react-lite";
-import Confetti from "react-confetti"; // Импортируем Confetti
+import Confetti from "react-confetti"; 
+import { useRouter } from "next/navigation";
+
 
 interface Values {
   email: string;
@@ -12,20 +14,18 @@ interface Values {
 
 const LoginForm: FC = () => {
   const { store } = useContext(Context);
+  const router= useRouter()
 
-  // Состояние для конфетти
   const [showConfetti, setShowConfetti] = useState(false);
   const [windowDimension, setWindowDimension] = useState({
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0,
   });
 
-  // Состояние для видимости пароля
   const [showPassword, setShowPassword] = useState(false);
 
-  // Обновление размеров окна для конфетти
   useEffect(() => {
-    if (typeof window === 'undefined') return; // Избегаем SSR ошибок
+    if (typeof window === 'undefined') return; 
 
     const detectSize = () => {
       setWindowDimension({ width: window.innerWidth, height: window.innerHeight });
@@ -46,13 +46,12 @@ const LoginForm: FC = () => {
       await store.login(values.email, values.password);
       if (store.isAuth) {
         store.setLoginModalOpen(false);
-        // Показываем конфетти при успешном входе
         setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 3000); // Скрываем через 3 секунды
+        setTimeout(() => setShowConfetti(false), 3000);
+        router.push("/dashboard") 
       }
     } catch (e) {
       console.error("Login failed:", e);
-      // Опционально: показать сообщение об ошибке пользователю
     } finally {
       setSubmitting(false);
       store.setIsLoading(false);
