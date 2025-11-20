@@ -109,7 +109,7 @@ const RegisterForm: FC = () => {
               name="password"
               placeholder="password"
               type={showPassword ? "text" : "password"}
-              className="p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200 pr-10"
+              className="p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200"
             />
             <button
               type="button"

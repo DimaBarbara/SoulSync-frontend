@@ -60,7 +60,6 @@ export default class Store {
       this.setAuth(true);
       this.setUser(response.data.user);
       toast.success("Registration successful!");
-      toast.info("Please activate your account via email.");
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         toast.error(error.response.data?.message || "Registration failed.");
