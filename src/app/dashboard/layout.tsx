@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import React from "react";
 
 export default async function DashboardLayout({
@@ -15,12 +13,6 @@ export default async function DashboardLayout({
   moodChart: React.ReactNode;
   advise: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("refreshToken");
-
-  if (!token) {
-    redirect("/?showLogin=true");
-  }
 
   return (
     <div className="flex flex-col mb-30 xl:mb-0">
