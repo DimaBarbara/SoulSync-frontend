@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = "https://soulsync-backend-prda.onrender.com/api";
+export const API_URL = "/api";
 const $api = axios.create({
   withCredentials: true,
   baseURL: API_URL,
