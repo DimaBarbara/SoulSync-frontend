@@ -1,5 +1,23 @@
 {
   "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
+    "[project]/src/app/dashboard/@advise/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
+    "[project]/src/app/dashboard/@emotionBar/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
+    "[project]/src/app/dashboard/@inputBar/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
+    "[project]/src/app/dashboard/@moodChart/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
+    "[project]/src/app/dashboard/page": [
+      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
+    ],
     "[project]/src/app/page": [
       "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
     ]

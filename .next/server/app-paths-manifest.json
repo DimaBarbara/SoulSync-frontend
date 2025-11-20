@@ -1,3 +1,9 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/@advise/page": "app/dashboard/@advise/page.js",
+  "/dashboard/@emotionBar/page": "app/dashboard/@emotionBar/page.js",
+  "/dashboard/@inputBar/page": "app/dashboard/@inputBar/page.js",
+  "/dashboard/@moodChart/page": "app/dashboard/@moodChart/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/page": "app/page.js"
 }
