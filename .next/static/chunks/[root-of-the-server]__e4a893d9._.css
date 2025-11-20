@@ -32,15 +32,6 @@
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
-      --tw-gradient-position: initial;
-      --tw-gradient-from: rgba(0, 0, 0, 0);
-      --tw-gradient-via: rgba(0, 0, 0, 0);
-      --tw-gradient-to: rgba(0, 0, 0, 0);
-      --tw-gradient-stops: initial;
-      --tw-gradient-via-stops: initial;
-      --tw-gradient-from-position: 0%;
-      --tw-gradient-via-position: 50%;
-      --tw-gradient-to-position: 100%;
     }
 
     ::backdrop {
@@ -74,15 +65,6 @@
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
-      --tw-gradient-position: initial;
-      --tw-gradient-from: rgba(0, 0, 0, 0);
-      --tw-gradient-via: rgba(0, 0, 0, 0);
-      --tw-gradient-to: rgba(0, 0, 0, 0);
-      --tw-gradient-stops: initial;
-      --tw-gradient-via-stops: initial;
-      --tw-gradient-from-position: 0%;
-      --tw-gradient-via-position: 50%;
-      --tw-gradient-to-position: 100%;
     }
   }
 }
@@ -98,8 +80,6 @@
     --color-orange-500: #fe6e00;
     --color-amber-200: #fee685;
     --color-amber-300: #ffd236;
-    --color-yellow-200: #fff085;
-    --color-yellow-400: #fac800;
     --color-yellow-500: #edb200;
     --color-lime-200: #d8f999;
     --color-lime-300: #bbf451;
@@ -163,8 +143,6 @@
       --color-orange-500: color(display-p3 .946589 .449788 .0757345);
       --color-amber-200: color(display-p3 .979824 .904554 .57325);
       --color-amber-300: color(display-p3 .974327 .83063 .33298);
-      --color-yellow-200: color(display-p3 .988789 .943116 .579188);
-      --color-yellow-400: color(display-p3 .959941 .790171 .0585198);
       --color-yellow-500: color(display-p3 .903651 .703062 .0745389);
       --color-lime-200: color(display-p3 .872841 .974338 .642611);
       --color-lime-300: color(display-p3 .778594 .948857 .421857);
@@ -196,8 +174,6 @@
       --color-orange-500: lab(64.272% 57.1788 90.3583);
       --color-amber-200: lab(91.7203% -.505269 49.9084);
       --color-amber-300: lab(86.4156% 6.13147 78.3961);
-      --color-yellow-200: lab(94.3433% -5.00429 52.9663);
-      --color-yellow-400: lab(83.2664% 8.65132 106.895);
       --color-yellow-500: lab(76.3898% 14.5258 98.4589);
       --color-lime-200: lab(94.0718% -22.5338 42.5238);
       --color-lime-300: lab(89.9218% -35.6546 68.5254);
@@ -1432,14 +1408,6 @@
     background-color: var(--color-gray-300);
   }
 
-  .bg-gray-400 {
-    background-color: var(--color-gray-400);
-  }
-
-  .bg-gray-500 {
-    background-color: var(--color-gray-500);
-  }
-
   .bg-green-400 {
     background-color: var(--color-green-400);
   }
@@ -1542,10 +1510,6 @@
 
   .pr-7 {
     padding-right: calc(var(--spacing) * 7);
-  }
-
-  .pr-10 {
-    padding-right: calc(var(--spacing) * 10);
   }
 
   .pl-10 {
@@ -1820,48 +1784,6 @@
   @media (hover: hover) {
     .group-hover\:motion-duration-\[1s\]:is(:where(.group):hover *) {
       --motion-duration: 1s;
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:bg-gradient-to-r:is(:where(.peer):hover ~ *) {
-      --tw-gradient-position: to right in oklab;
-      background-image: linear-gradient(var(--tw-gradient-stops));
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:from-yellow-400:is(:where(.peer):hover ~ *) {
-      --tw-gradient-from: var(--color-yellow-400);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:via-yellow-200:is(:where(.peer):hover ~ *) {
-      --tw-gradient-via: var(--color-yellow-200);
-      --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
-      --tw-gradient-stops: var(--tw-gradient-via-stops);
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:to-yellow-500:is(:where(.peer):hover ~ *) {
-      --tw-gradient-to: var(--color-yellow-500);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:bg-clip-text:is(:where(.peer):hover ~ *) {
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-  }
-
-  @media (hover: hover) {
-    .peer-hover\:text-transparent:is(:where(.peer):hover ~ *) {
-      color: rgba(0, 0, 0, 0);
     }
   }
 
@@ -2304,57 +2226,6 @@ body {
   syntax: "*";
   inherits: false;
   initial-value: 1;
-}
-
-@property --tw-gradient-position {
-  syntax: "*";
-  inherits: false
-}
-
-@property --tw-gradient-from {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgba(0, 0, 0, 0);
-}
-
-@property --tw-gradient-via {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgba(0, 0, 0, 0);
-}
-
-@property --tw-gradient-to {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgba(0, 0, 0, 0);
-}
-
-@property --tw-gradient-stops {
-  syntax: "*";
-  inherits: false
-}
-
-@property --tw-gradient-via-stops {
-  syntax: "*";
-  inherits: false
-}
-
-@property --tw-gradient-from-position {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 0%;
-}
-
-@property --tw-gradient-via-position {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 50%;
-}
-
-@property --tw-gradient-to-position {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 100%;
 }
 
 /* [next]/internal/font/google/rubik_6765667a.module.css [app-client] (css) */

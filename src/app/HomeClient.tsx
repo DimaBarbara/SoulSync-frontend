@@ -9,6 +9,7 @@ import { observer } from "mobx-react-lite";
 import { useCheckAuth } from "@/lib/hooks/useCheckAuth";
 
 function HomeClient() { 
+  console.log("check")
   useCheckAuth(); 
   return (
     <div>

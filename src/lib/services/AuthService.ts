@@ -17,6 +17,7 @@ export default class AuthService {
     return $api.post<AuthResponse>("/auth/registration", { email, password });
   }
   static async refresh(): Promise<AxiosResponse<AuthResponse>> {
+    console.log('refresh')
     return $api.get<AuthResponse>("/auth/refresh");
   }
 

@@ -1,8 +1,5 @@
 {
   "app": {
-    "[project]/src/app/dashboard/page": [
-      "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
-    ],
     "[project]/src/app/page": [
       "static/media/de04be17600da772-s.p.0c4dcf35.woff2"
     ]

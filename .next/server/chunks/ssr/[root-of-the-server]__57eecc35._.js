@@ -349,7 +349,7 @@ const Footer = ()=>{
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: "mailto:dmytrobarbara1@email.com",
+                            href: "mailto:dmytrobarbara1@gmail.com",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaEnvelope"], {
                                 size: 24,
                                 className: "hover:text-red-500 transition-colors"
@@ -480,11 +480,23 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-ssr] (ecmascript)");
 ;
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://soulsync-backend-prda.onrender.com/api";
 const $api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].create({
     withCredentials: true,
     baseURL: API_URL
 });
+let isRefreshing = false;
+let failedQueue = [];
+const processQueue = (error, token = null)=>{
+    failedQueue.forEach((prom)=>{
+        if (error) {
+            prom.reject(error);
+        } else {
+            prom.resolve(token);
+        }
+    });
+    failedQueue = [];
+};
 $api.interceptors.request.use((config)=>{
     config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
     return config;
@@ -496,19 +508,39 @@ $api.interceptors.response.use((response)=>{
     return response;
 }, async (error)=>{
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._isRetry) {
-        originalRequest._isRetry = true;
-        try {
-            const response = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/auth/refresh`, {
-                withCredentials: true
+    const status = error.response?.status;
+    if (status === 401 && !originalRequest._isRetry) {
+        const retryOriginalRequest = new Promise((resolve, reject)=>{
+            failedQueue.push({
+                resolve,
+                reject
             });
-            localStorage.setItem("token", response.data.accessToken);
-            originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
-            return $api(originalRequest);
-        } catch (refreshError) {
-            console.error("Refresh token expired. Logging out.", refreshError);
-            localStorage.removeItem("token");
+        });
+        if (!isRefreshing) {
+            isRefreshing = true;
+            originalRequest._isRetry = true;
+            try {
+                const response = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/auth/refresh`, {
+                    withCredentials: true
+                });
+                const newAccessToken = response.data.accessToken;
+                localStorage.setItem('token', newAccessToken);
+                $api.defaults.headers.Authorization = `Bearer ${newAccessToken}`;
+                processQueue(null, newAccessToken);
+                originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+                return $api(originalRequest);
+            } catch (refreshError) {
+                console.error("Refresh token expired. Logging out.", refreshError);
+                localStorage.removeItem("token");
+                processQueue(refreshError);
+                return Promise.reject(refreshError);
+            } finally{
+                isRefreshing = false;
+            }
         }
+        const newAccessToken = await retryOriginalRequest;
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return $api(originalRequest);
     }
     return Promise.reject(error);
 });
@@ -628,7 +660,6 @@ class Store {
             this.setAuth(true);
             this.setUser(response.data.user);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Registration successful!");
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].info("Please activate your account via email.");
         } catch (error) {
             if (__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].isAxiosError(error) && error.response) {
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.response.data?.message || "Registration failed.");
@@ -836,7 +867,7 @@ const RegisterForm = ()=>{
                                     name: "password",
                                     placeholder: "password",
                                     type: showPassword ? "text" : "password",
-                                    className: "p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200 pr-10"
+                                    className: "p-3 rounded-4xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-200"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/RegistrationForm.tsx",
                                     lineNumber: 107,

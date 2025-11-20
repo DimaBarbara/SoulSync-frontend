@@ -47,6 +47,7 @@ $api.interceptors.response.use(
             originalRequest._isRetry = true; 
 
             try {
+              console.log(4)
                 const response = await axios.get(`${API_URL}/auth/refresh`, { withCredentials: true });
                 const newAccessToken = response.data.accessToken;
                 
