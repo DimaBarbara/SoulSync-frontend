@@ -1,7 +1,17 @@
-import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../StoreProvider";
+import { useRouter } from "next/navigation";
 
 const Greetings = () => {
+    const { store } = useContext(Context);
+    const router = useRouter()
+  const handleClick = () => {
+    if (store.isAuth) {
+      router.push("/dashboard")
+    } else {
+      store.setRegistrationModalOpen(true) 
+    }
+}
   return (
     <section
       id="Greetings"
@@ -18,11 +28,9 @@ const Greetings = () => {
           This project is built for practice and experimenting with React,
           Tailwind, and Next.js.
         </p>
-        <Link href="/dashboard">
-          <button className="bg-blue-500 text-white text-sm sm:text-xl px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition">
+          <button onClick={handleClick} className="bg-blue-500 text-white text-sm sm:text-xl px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition">
             Start Exploring
           </button>
-        </Link>
       </div>
     </section>
   );
