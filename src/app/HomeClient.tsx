@@ -6,11 +6,10 @@ import Greetings from "./components/Greetings";
 import GreetingsImage from "./components/GreetingImage";
 import FactsAboutAI from "./components/FactsAboutAi";
 import { observer } from "mobx-react-lite";
-import { useCheckAuth } from "@/lib/hooks/useCheckAuth";
+
 
 function HomeClient() { 
   console.log("check")
-  useCheckAuth(); 
   return (
     <div>
       <div className="flex gap-6 sm: flex-col xl:flex-row ">

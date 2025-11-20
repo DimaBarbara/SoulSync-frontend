@@ -12,6 +12,5 @@ export const useCheckAuth = () => {
       store.setAuth(false); 
       store.setUser({} as IUser);
     }
-    
   }, [store]);
 };
