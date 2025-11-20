@@ -101,7 +101,7 @@ export default class Store {
   }
 
   async checkAuth() {
-    this.setIsLoading(true);
+    // this.setIsLoading(true);
     try {
       console.log(2)
       const response = await AuthService.refresh();

@@ -13,5 +13,5 @@ export const useCheckAuth = () => {
       store.setUser({} as IUser);
     }
     
-  }, []);
+  }, [store]);
 };
