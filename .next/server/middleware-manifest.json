@@ -11,14 +11,14 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/dashboard(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
-          "originalSource": "/dashboard/:path*"
+          "regexp": "^/.*$",
+          "originalSource": "/:path*"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "n71e7TDacyhpP-eMjrz-q",
+        "__NEXT_BUILD_ID": "2teNsL_Qa7YHL0bKCnqAc",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "i+7jV8sZ12Mls5dNz0+HX3xBkXDqRqMSLMRO5LhmWTs=",
         "__NEXT_PREVIEW_MODE_ID": "75ecca1f406c1943751cfa3412794201",
         "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "33c7ed9dec6aacf0bfdee273f761e1d3dbc336999806571f0a8a9fb742b1c908",
